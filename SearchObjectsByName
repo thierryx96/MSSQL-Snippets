@@ -1,0 +1,15 @@
+SELECT   objects.name, objects.type_desc,OBJECT_DEFINITION(object_id)
+FROM    sys.objects
+WHERE   OBJECT_DEFINITION(object_id) LIKE 'CasinoId%' ESCAPE '\'
+        OR OBJECT_DEFINITION(object_id) LIKE '%CasinoID%' ESCAPE '\'
+UNION
+SELECT 
+       objects.name, objects.type_desc,OBJECT_DEFINITION(object_id)
+FROM    sys.servers s
+        CROSS APPLY ( SELECT    *
+                      FROM      sys.objects
+                      WHERE     OBJECT_DEFINITION(object_id) LIKE '%' + s.name
+                                + '%' ESCAPE '\'
+                    ) objects
+WHERE   is_linked = 1
+        AND (Data_Source LIKE '%CasinoID%' OR Data_Source LIKE 'CasinoId%')
