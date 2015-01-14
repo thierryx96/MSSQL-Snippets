@@ -2,6 +2,13 @@ MSSQL-Snippets
 ==============
 CheatSheet
 
+UDF Determinism
+===============
+
+```
+SELECT OBJECTPROPERTY(OBJECT_ID('dbo.myUdf'), 'IsDeterministic');
+```
+
 DECLARE and SET Varibales
 ==============
 DECLARE @Mojo int
