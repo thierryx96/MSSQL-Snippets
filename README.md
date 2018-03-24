@@ -1,4 +1,4 @@
-MSSQL-Snippets
+MSSQL-Snippets ... 
 ==============
 
 Atomic exec of a script
